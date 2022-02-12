@@ -21,13 +21,13 @@ import java.util.List;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Table(name = "packages")
-public class Package {
+@Table(name = "parcels")
+public class Parcel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NonNull
-    private PackageType packageType;
+    private Parcel.ParcelType parcelType;
     @NonNull
     private String receiverIndex;
     @NonNull
@@ -40,7 +40,7 @@ public class Package {
     @OneToMany(cascade = CascadeType.ALL)
     private List<PostOffice> postOffices;
 
-    public enum PackageType {
+    public enum ParcelType {
         LETTER,
         PACKAGE,
         PARCEL,

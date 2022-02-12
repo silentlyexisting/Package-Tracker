@@ -1,6 +1,6 @@
 package com.tracker.code.dto;
 
-import com.tracker.code.model.Package;
+import com.tracker.code.model.Parcel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PackageDto {
-    private Package.PackageType packageType;
+public class ParcelDto {
+    private Parcel.ParcelType parcelType;
     private String receiverIndex;
     private String receiverAddress;
     private String receiverName;
-    private Package.ShipmentStatus shipmentStatus;
+    private Parcel.ShipmentStatus shipmentStatus;
     private PostOfficeDto postOffice;
 }
 
