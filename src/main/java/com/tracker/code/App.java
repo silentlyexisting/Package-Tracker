@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition(
 		info = @Info(
-				title = "Package Tracker API",
+				title = "Parcel Tracker API",
 				version = "1.0",
-				description = "Information about packages shipments"
+				description = "Information about parcel shipments"
 		)
 )
 public class App {
