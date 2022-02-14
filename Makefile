@@ -7,8 +7,6 @@ clean:
 build:
 	./gradlew clean build
 
-install:
-	./gradlew clean install
 
 check-updates:
 	./gradlew dependencyUpdates
