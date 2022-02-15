@@ -1,0 +1,11 @@
+{
+  "parcelType": "POST_CARD",
+  "receiverIndex": "123456",
+  "receiverAddress": "Kyiv, boulevard Taras Shevchenko",
+  "receiverName": "Ivan Pavlov",
+  "postOffice": {
+      "index": "654321",
+      "name": "Starting Post Office",
+      "address": "Moscow, str. Tverskaya"
+  }
+}
