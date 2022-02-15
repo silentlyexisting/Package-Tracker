@@ -35,17 +35,19 @@ class AppTest {
     @Autowired
     private ParcelRepository parcelRepository;
 
+    private final static String baseUrl = "/api/v1.0/shipments/";
+    private final String registrateParcelJson = "src/test/resources/fixtures/registrateParcel.json";
+    private final String arriveAtTempOfficeJson = "src/test/resources/fixtures/arrivedAtTempPostOffice.json";
+
     private Parcel parcel;
     private String postParcel;
     private String patchParcel;
 
-    private final String registerParcelJson = "src/test/resources/fixtures/registerParcel.json";
-    private final String tempOfficeJson = "src/test/resources/fixtures/arrivedAtTempPostOffice.json";
 
     @BeforeAll
     public void beforeAll() throws IOException {
-        postParcel = Files.readString(Path.of(registerParcelJson));
-        patchParcel = Files.readString(Path.of(tempOfficeJson));
+        postParcel = Files.readString(Path.of(registrateParcelJson));
+        patchParcel = Files.readString(Path.of(arriveAtTempOfficeJson));
         parcel = new Parcel();
         parcelRepository.save(parcel);
     }
@@ -53,7 +55,7 @@ class AppTest {
     @Test
     void testCreateShipment() throws Exception {
         MockHttpServletResponse postResponse = mockMvc
-                .perform(post("/v1.0/register")
+                .perform(post(baseUrl + "registrate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(postParcel)
                 )
@@ -69,7 +71,7 @@ class AppTest {
     @Test
     void testParcelArrivedAtTempPostOffice() throws Exception {
         MockHttpServletResponse patchResponse = mockMvc
-                .perform(patch("/v1.0/shipments/" + parcel.getId())
+                .perform(patch(baseUrl + parcel.getId() + "/temp-office")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(patchParcel)
                 )
@@ -81,23 +83,21 @@ class AppTest {
                 "Your parcel has arrived at the new temporary post office.");
 
         MockHttpServletResponse getResponse = mockMvc
-                .perform(get("/v1.0/shipments/" + parcel.getId()))
+                .perform(get(baseUrl + parcel.getId()))
                 .andReturn()
                 .getResponse();
 
         assertThat(getResponse.getStatus()).isEqualTo(200);
         assertThat(getResponse.getContentAsString()).contains(
                 "AT_TEMPORARY_POST_OFFICE",
-                "321456",
-                "Some Temporary Post Office",
-                "Kharkiv, st. Pushkin"
+                "3521 Michigan Avenue"
         );
     }
 
     @Test
     void testParcelLeftTempPostOffice() throws Exception {
         MockHttpServletResponse patchResponse = mockMvc
-                .perform(patch("/v1.0/shipments/" + parcel.getId() + "/shipped"))
+                .perform(patch(baseUrl + parcel.getId() + "/shipped"))
                 .andReturn()
                 .getResponse();
 
@@ -106,7 +106,7 @@ class AppTest {
                 "Your parcel has left the temporary post office");
 
         MockHttpServletResponse getResponse = mockMvc
-                .perform(get("/v1.0/shipments/" + parcel.getId()))
+                .perform(get(baseUrl + parcel.getId()))
                 .andReturn()
                 .getResponse();
 
@@ -117,7 +117,7 @@ class AppTest {
     @Test
     void testParcelReceived() throws Exception {
         MockHttpServletResponse patchResponse = mockMvc
-                .perform(patch("/v1.0/shipments/" + parcel.getId() + "/received"))
+                .perform(patch(baseUrl + parcel.getId() + "/received"))
                 .andReturn()
                 .getResponse();
 
@@ -126,7 +126,7 @@ class AppTest {
                 "Parcel was successfully received by the recipient");
 
         MockHttpServletResponse getResponse = mockMvc
-                .perform(get("/v1.0/shipments/" + parcel.getId()))
+                .perform(get(baseUrl + parcel.getId()))
                 .andReturn()
                 .getResponse();
 

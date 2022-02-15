@@ -1,0 +1,11 @@
+{
+  "parcelType": "POST_CARD",
+  "receiverIndex": "60606",
+  "receiverAddress": "1415 University Drive, Chicago",
+  "receiverName": "Michael E. Reed",
+  "postOffice": {
+      "index": "10013",
+      "name": "Start Post Office",
+      "address": "4517 Hoffman Avenue, New York"
+  }
+}
