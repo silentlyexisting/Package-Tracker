@@ -18,7 +18,7 @@ public class ParcelServiceImpl implements ParcelService {
     private ParcelRepository parcelRepository;
 
     @Override
-    public void registerShipment(ParcelDto parcelDto) {
+    public void registrateShipment(ParcelDto parcelDto) {
         PostOffice postOffice = new PostOffice(
                 parcelDto.getPostOffice().getIndex(),
                 parcelDto.getPostOffice().getName(),
@@ -30,7 +30,7 @@ public class ParcelServiceImpl implements ParcelService {
                 parcelDto.getReceiverIndex(),
                 parcelDto.getReceiverAddress(),
                 parcelDto.getReceiverName(),
-                Parcel.ShipmentStatus.REGISTERED,
+                Parcel.ShipmentStatus.REGISTRATED,
                 List.of(postOffice)
 
         );

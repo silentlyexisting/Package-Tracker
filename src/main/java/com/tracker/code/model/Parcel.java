@@ -48,7 +48,7 @@ public class Parcel {
     }
 
     public enum ShipmentStatus {
-        REGISTERED,
+        REGISTRATED,
         AT_TEMPORARY_POST_OFFICE,
         SHIPPED,
         RECEIVED,

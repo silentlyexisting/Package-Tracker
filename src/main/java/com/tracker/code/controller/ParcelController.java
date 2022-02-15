@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@RequestMapping("/v1.0")
+@RequestMapping("/api/v1.0/shipments")
 public class ParcelController {
     @Autowired
     private ParcelService parcelService;
@@ -28,13 +28,13 @@ public class ParcelController {
         this.parcelService = parcelService;
     }
 
-    @Operation(summary = "Registering a parcel in the postal system")
+    @Operation(summary = "Registrate a parcel in the postal system")
     @ApiResponse(responseCode = "200", description = "Successful registration of the parcel")
-    @PostMapping("/register")
-    public String createShipment(
+    @PostMapping("/registrate")
+    public String registrateShipment(
             @Parameter(description = "Information about parcel for register")
             @RequestBody ParcelDto parcelDto) {
-        this.parcelService.registerShipment(parcelDto);
+        this.parcelService.registrateShipment(parcelDto);
         return "Your parcel has been successfully registered and will be sent soon.";
     }
 
@@ -43,7 +43,7 @@ public class ParcelController {
             @ApiResponse(responseCode = "200", description = "Parcel found"),
             @ApiResponse(responseCode = "404", description = "Parcel with that id not found")
     })
-    @GetMapping("/shipments/{parcelId}")
+    @GetMapping("/{parcelId}")
     public Parcel getInfoAboutParcel(
             @Parameter(description = "Id of parcel to be found")
             @PathVariable long parcelId) {
@@ -56,8 +56,8 @@ public class ParcelController {
             @ApiResponse(responseCode = "404", description = "Parcel with that id not found," +
                     " cannot be arrived")
     })
-    @PatchMapping("/shipments/{parcelId}")
-    public String arriveTempPostOffice(
+    @PatchMapping("/{parcelId}/temp-office")
+    public String arriveAtTempPostOffice(
             @Parameter(description = "Id of parcel to be found and updated")
             @PathVariable long parcelId,
             @Parameter(description = "Temporary post office information")
@@ -72,7 +72,7 @@ public class ParcelController {
             @ApiResponse(responseCode = "404", description = "Parcel with that id not found," +
                     " cannot be shipped")
     })
-    @PatchMapping("/shipments/{parcelId}/shipped")
+    @PatchMapping("/{parcelId}/shipped")
     public String shipParcel(
             @Parameter(description = "Id of parcel to be found and updated")
             @PathVariable long parcelId) {
@@ -86,7 +86,7 @@ public class ParcelController {
             @ApiResponse(responseCode = "404", description = "Parcel with that id not found," +
                     " cannot be received")
     })
-    @PatchMapping("/shipments/{parcelId}/received")
+    @PatchMapping("/{parcelId}/received")
     public String receiveParcel(
             @Parameter(description = "Id of parcel to be found and updated (received)")
             @PathVariable long parcelId) {
