@@ -26,6 +26,9 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.25'
+	implementation 'com.h2database:h2:1.4.200'
+
+	testImplementation 'com.github.database-rider:rider-junit5:1.32.0'
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.5.12'
 
