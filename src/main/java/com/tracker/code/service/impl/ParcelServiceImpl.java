@@ -30,7 +30,7 @@ public class ParcelServiceImpl implements ParcelService {
                 parcelDto.getReceiverIndex(),
                 parcelDto.getReceiverAddress(),
                 parcelDto.getReceiverName(),
-                parcelDto.getShipmentStatus(),
+                Parcel.ShipmentStatus.REGISTERED,
                 List.of(postOffice)
 
         );
