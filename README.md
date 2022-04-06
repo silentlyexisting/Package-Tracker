@@ -4,7 +4,7 @@
 # Parcel Tracker | Почтовый Трекер
 ### <b>[Test Task For MediaSoft Java EE](https://drive.google.com/file/d/1obl6-j36xkLszszRPnj0enWxPX-nzzuQ/view)</b>
 
-## Docker compose
+## Run application with Docker compose
 ```
 docker-compose up
 ```
