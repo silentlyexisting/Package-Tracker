@@ -4,6 +4,10 @@
 # Parcel Tracker | Почтовый Трекер
 ### <b>[Test Task For MediaSoft Java EE](https://drive.google.com/file/d/1obl6-j36xkLszszRPnj0enWxPX-nzzuQ/view)</b>
 
+## Docker compose
+```
+docker-compose up
+```
 ## API
 API available for viewing at: build/openapi.json
 
