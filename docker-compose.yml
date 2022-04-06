@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  database:
+    image: postgres:14.2-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: parcelTracker
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+  application:
+    build: .
+    container_name: parcel_tracker_app
+    ports:
+      - 7000:7000
+    expose:
+      - 7000
+    environment:
+      JDBC_DATASOURCE_URL: jdbc:postgresql://database:5432/parcelTracker
+    depends_on:
+      - database
