@@ -9,7 +9,7 @@
 docker-compose up
 ```
 ## API
-API available for viewing at: build/openapi.json
+API available for viewing at: `build/openapi.json` or run application and follow: [Click here](http://localhost:7000/swagger-ui.html)
 
 ## POST: /api/v1.0/shipments/registrate
 > Registrate a parcel in the postal system (tracker)
